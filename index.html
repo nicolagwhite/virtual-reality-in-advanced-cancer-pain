@@ -2,40 +2,342 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Project Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VR Intervention for Advanced Cancer Pain</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; }
-    h1 { font-size: 1.6rem; }
-    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin: 12px 0; display: flex; justify-content: space-between; align-items: center; }
-    .card a { text-decoration: none; color: #0070f3; font-weight: bold; }
-    .tag { font-size: 0.75rem; background: #f0f0f0; padding: 3px 8px; border-radius: 4px; }
+    :root {
+      --bg: #f7f5f2;
+      --ink: #1a1a1a;
+      --muted: #6b6b6b;
+      --accent: #2d6a8f;
+      --accent-light: #e8f2f8;
+      --border: #e0dbd4;
+      --card-bg: #ffffff;
+      --tag-pdf: #f0ebe3;
+      --tag-url: #e8f2f8;
+      --tag-form: #edf4ed;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Subtle top bar */
+    .top-bar {
+      background: var(--accent);
+      height: 4px;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .header .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .header h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    .header .description {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(45, 106, 143, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tag-pdf  { background: var(--tag-pdf);  color: #7a5c3a; }
+    .tag-url  { background: var(--tag-url);  color: var(--accent); }
+    .tag-form { background: var(--tag-form); color: #3a6b3a; }
+
+    .card-text { min-width: 0; }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .arrow {
+      font-size: 1.1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      opacity: 0.7;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .card:hover .arrow {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+
+    /* Signup section */
+    .signup-section {
+      background: var(--accent-light);
+      border: 1px solid #c5dce9;
+      border-radius: 12px;
+      padding: 28px 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.4s forwards;
+    }
+
+    .signup-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .signup-section p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .signup-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .signup-btn:hover {
+      background: #235c7d;
+      transform: translateY(-1px);
+    }
+
+    /* Divider */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0 24px;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.5s ease 0.5s forwards;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* Animation delays for cards */
+    .card:nth-child(1) { animation-delay: 0.15s; }
+    .card:nth-child(2) { animation-delay: 0.22s; }
+    .card:nth-child(3) { animation-delay: 0.29s; }
+    .card:nth-child(4) { animation-delay: 0.36s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 500px) {
+      .card-title { font-size: 0.875rem; }
+      .tag { display: none; }
+    }
   </style>
 </head>
 <body>
-  <h1>Virtual Reality for advanced cancer pain</h1>
-  <p>Welcome to the data repository for the VRcan study. This study, funded by the NIHR, developed a guide for the use of virtual reality as a pain management tool for people living with advanced paper. Below are some links and papers that you might find helpful. This will be updated routinely.</p>
+  <div class="top-bar"></div>
+  <div class="container">
 
-  <h2>Papers & Links</h2>
+    <!-- Header -->
+    <header class="header">
+      <p class="eyebrow">Research Dashboard</p>
+      <h1>Virtual reality intervention for <em>advanced cancer pain</em></h1>
+      <p class="description">
+        Below you'll find papers, links, and resources referenced in connection with this project.
+        Sign up to receive updates as the work progresses.
+      </p>
+    </header>
 
-  <div class="card">
-    <div>
-      <span class="tag">PDF</span>
-      <strong>My Report</strong><br>
-      <small>Author, 2025</small>
+    <!-- Links & Papers -->
+    <p class="section-label">Papers &amp; Links</p>
+    <div class="cards">
+
+      <!-- UCL project page -->
+      <a class="card" href="YOUR_UCL_URL" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-url">URL</span>
+          <div class="card-text">
+            <div class="card-title">Virtual reality for pain management in advanced cancer</div>
+            <div class="card-sub">UCL Faculty of Brain Sciences</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <!-- Placeholder PDF 1 -->
+      <a class="card" href="YOUR_PDF_1.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Presentation Slides</div>
+            <div class="card-sub">Slides from the talk</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <!-- Placeholder PDF 2 -->
+      <a class="card" href="YOUR_PDF_2.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Paper Title — add yours here</div>
+            <div class="card-sub">Author et al., 2025</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <!-- Placeholder external URL -->
+      <a class="card" href="YOUR_URL_2" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-url">URL</span>
+          <div class="card-text">
+            <div class="card-title">Additional Resource — add yours here</div>
+            <div class="card-sub">example.com</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
     </div>
-    <a href="my-report.pdf" target="_blank">↗</a>
-  </div>
 
-  <div class="card">
-    <div>
-      <span class="tag">URL</span>
-      <strong>Useful Website</strong><br>
-      <small>example.com</small>
+    <!-- Signup -->
+    <div class="signup-section">
+      <h2>Stay updated</h2>
+      <p>Sign up to receive updates when new findings, publications, or project milestones are ready to share.</p>
+      <a class="signup-btn" href="YOUR_FORM_LINK" target="_blank" rel="noopener">
+        Sign up for updates ↗
+      </a>
     </div>
-    <a href="https://example.com" target="_blank">↗</a>
-  </div>
 
-  <hr>
-  <p>Dr Nicola White · University College London (UCL)</p>
+    <hr class="divider">
+
+    <!-- Footer -->
+    <footer class="footer">
+      Your Name · Your Department · Your Institution
+    </footer>
+
+  </div>
 </body>
 </html>
