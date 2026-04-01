@@ -30,7 +30,6 @@
       min-height: 100vh;
     }
 
-    /* Subtle top bar */
     .top-bar {
       background: var(--accent);
       height: 4px;
@@ -43,7 +42,6 @@
       padding: 60px 24px 80px;
     }
 
-    /* Header */
     .header {
       margin-bottom: 56px;
       opacity: 0;
@@ -81,7 +79,6 @@
       line-height: 1.75;
     }
 
-    /* Section label */
     .section-label {
       font-size: 0.72rem;
       font-weight: 500;
@@ -93,7 +90,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* Cards */
     .cards {
       display: flex;
       flex-direction: column;
@@ -175,7 +171,6 @@
       transform: translate(2px, -2px);
     }
 
-    /* Signup section */
     .signup-section {
       background: var(--accent-light);
       border: 1px solid #bfcfef;
@@ -217,14 +212,12 @@
       transform: translateY(-1px);
     }
 
-    /* Divider */
     .divider {
       border: none;
       border-top: 1px solid var(--border);
       margin: 48px 0 24px;
     }
 
-    /* Footer */
     .footer {
       font-size: 0.8rem;
       color: var(--muted);
@@ -237,11 +230,13 @@
       text-decoration: none;
     }
 
-    /* Animation delays for cards */
     .card:nth-child(1) { animation-delay: 0.15s; }
     .card:nth-child(2) { animation-delay: 0.22s; }
     .card:nth-child(3) { animation-delay: 0.29s; }
     .card:nth-child(4) { animation-delay: 0.36s; }
+    .card:nth-child(5) { animation-delay: 0.43s; }
+    .card:nth-child(6) { animation-delay: 0.50s; }
+    .card:nth-child(7) { animation-delay: 0.57s; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(14px); }
@@ -258,7 +253,6 @@
   <div class="top-bar"></div>
   <div class="container">
 
-    <!-- Header -->
     <header class="header">
       <p class="eyebrow">Research Dashboard</p>
       <h1>Virtual reality intervention for <em>advanced cancer pain</em></h1>
@@ -268,85 +262,88 @@
       </p>
     </header>
 
-   <!-- Links & Papers -->
-<p class="section-label">Papers &amp; Links</p>
-<div class="cards">
+    <p class="section-label">Papers &amp; Links</p>
+    <div class="cards">
 
-  <!-- UCL project page -->
-  <a class="card" href="https://www.ucl.ac.uk/brain-sciences/psychiatry/research/marie-curie-palliative-care-research-department/virtual-reality-pain-management-advanced-cancer" target="_blank" rel="noopener">
-    <div class="card-left">
-      <span class="tag tag-url">URL</span>
-      <div class="card-text">
-        <div class="card-title">Virtual reality for pain management in advanced cancer</div>
-        <div class="card-sub">UCL Faculty of Brain Sciences</div>
-      </div>
+      <a class="card" href="https://www.ucl.ac.uk/brain-sciences/psychiatry/research/marie-curie-palliative-care-research-department/virtual-reality-pain-management-advanced-cancer" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-url">URL</span>
+          <div class="card-text">
+            <div class="card-title">Virtual reality for pain management in advanced cancer</div>
+            <div class="card-sub">UCL Faculty of Brain Sciences</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="card" href="Flanagan et al Virtual Reality protocol.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Cochrane systematic review protocol</div>
+            <div class="card-sub">A protocol of the evidence regarding virtual reality as a pain management tool for advanced cancer</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="card" href="Review of VR in palliative care.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">A review of virtual reality in palliative care</div>
+            <div class="card-sub">Mo et al., 2022</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="card" href="1 Planning Action Plan.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Planning action plan</div>
+            <div class="card-sub">Personalise your planning phase</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="card" href="2 Set-up Action Plan.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Set-up action plan</div>
+            <div class="card-sub">Personalise your set-up phase</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="card" href="3 Personalisation Action Plan.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Personalisation action plan</div>
+            <div class="card-sub">Personalisation phase</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="card" href="4 Post-use Action Plan.pdf" target="_blank" rel="noopener">
+        <div class="card-left">
+          <span class="tag tag-pdf">PDF</span>
+          <div class="card-text">
+            <div class="card-title">Post-use action plan</div>
+            <div class="card-sub">Post-use phase</div>
+          </div>
+        </div>
+        <span class="arrow">↗</span>
+      </a>
+
     </div>
-    <span class="arrow">↗</span>
-  </a>
 
-  <!-- Cochrane protocol PDF -->
-  <a class="card" href="Flanagan et al Virtual Reality protocol.pdf" target="_blank" rel="noopener">
-    <div class="card-left">
-      <span class="tag tag-pdf">PDF</span>
-      <div class="card-text">
-        <div class="card-title">Cochrane systematic review protocol</div>
-        <div class="card-sub">A protocol of the evidence regarding virtual reality as a pain management tool for advanced cancer</div>
-      </div>
-    </div>
-    <span class="arrow">↗</span>
-  </a>
-
-  <!-- Review PDF -->
-  <a class="card" href="Review of VR in palliative care.pdf" target="_blank" rel="noopener">
-    <div class="card-left">
-      <span class="tag tag-pdf">PDF</span>
-      <div class="card-text">
-        <div class="card-title">A review of virtual reality in palliative care</div>
-        <div class="card-sub">Mo et al., 2022</div>
-      </div>
-    </div>
-    <span class="arrow">↗</span>
-  </a>
-
-  <!-- Action plan - Planning PDF -->
-  <a class="card" href="1 Planning Action Plan.pdf" target="_blank" rel="noopener">
-    <div class="card-left">
-      <span class="tag tag-pdf">PDF</span>
-      <div class="card-text">
-        <div class="card-title">Planning action plan</div>
-        <div class="card-sub">Personalise your planning phase</div>
-      </div>
-    </div>
-    <span class="arrow">↗</span>
-  </a>
-
-  <!-- Action plan - Set-up PDF -->
-  <a class="card" href="2 Set-up Action Plan.pdf" target="_blank" rel="noopener">
-    <div class="card-left">
-      <span class="tag tag-pdf">PDF</span>
-      <div class="card-text">
-        <div class="card-title">Set-up action plan</div>
-        <div class="card-sub">Personalise your set-up phase</div>
-      </div>
-    </div>
-    <span class="arrow">↗</span>
-  </a>
-
-  <!-- Action plan - Post-use PDF -->
-  <a class="card" href="4 Post-use Action Plan.pdf" target="_blank" rel="noopener">
-    <div class="card-left">
-      <span class="tag tag-pdf">PDF</span>
-      <div class="card-text">
-        <div class="card-title">Post-use action plan</div>
-        <div class="card-sub">Post-use phase</div>
-      </div>
-    </div>
-    <span class="arrow">↗</span>
-  </a>
-
-</div>
-
- <!-- Signup -->
     <div class="signup-section">
       <h2>Get yourself a guide</h2>
       <p>If you would like to receive a Guide for your workplace, please do sign up. We have 100 copies available.</p>
@@ -357,7 +354,6 @@
 
     <hr class="divider">
 
-    <!-- Footer -->
     <footer class="footer">
       Dr Nicola White · Marie Curie Palliative Care Research Department · University College London (UCL)
     </footer>
